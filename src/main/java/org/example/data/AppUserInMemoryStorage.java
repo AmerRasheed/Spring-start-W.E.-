@@ -3,10 +3,17 @@ package org.example.data;
 import com.sun.deploy.security.SelectableSecurityManager;
 import org.example.App;
 import org.example.model.AppUser;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
+
+// Marking class for SPRING CONTAINER
+// (AppUserInMmemoryStoage)->we will create a CONFIG package (ALl spring packages contains config package)
+// (config->@Configuration -> means
+@Component
 
 public class AppUserInMemoryStorage implements AppUserDAO{
 
@@ -39,6 +46,7 @@ public class AppUserInMemoryStorage implements AppUserDAO{
             }
 
     @Override
+
     public boolean delete(Integer id) {
         AppUser appUser = findById(id).orElseThrow(IllegalArgumentException::new);
         return appUsers.remove(appUser);
